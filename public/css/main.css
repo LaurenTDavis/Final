@@ -136,6 +136,17 @@ section.testimonials{
   
 }
 
+/*Map Locate*/
+#map {
+  width: 100%;
+  height: 100%;
+}
+.container2 {
+  
+  width: 100vw;
+  height: 100vh;
+}
+
 
 /*Login*/
 
