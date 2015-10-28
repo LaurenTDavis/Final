@@ -13,6 +13,10 @@ angular.module('App')
 				templateUrl : '/html/login.html',
 				controller : 'authService'
 			})
+			.when('/auth/signup', {
+				templateUrl : '/html/signup.html',
+				controller : 'authService'
+			})
 			.when('/locate', {
 				templateUrl : '/html/locate.html',
 				controller: 'locateController'
