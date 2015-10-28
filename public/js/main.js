@@ -21,14 +21,20 @@ angular.module('App')
 				templateUrl : '/html/locate.html',
 				controller: 'locateController'
 			})
+			.when('/trucks', {
+				templateUrl : '/html/trucks.html',
+				controller: 'truckController'
+			})
+			.when('/account', {
+				templateUrl : 'html/account.html',
+				controller : 'accountController'
+			})
 
 	}])
 
 
 angular.module('App')
-	.service('authService', ['$http', '$location', '$routeParams', function($http, $routeParams){
-		var username = $routeParams.username
-		console.log(username)
+	.service('authService', ['$http', '$location', function($http){
 		
 		this.authCheck = function(cb){
 			$http.get('/api/me')
@@ -56,6 +62,24 @@ angular.module('App')
 
 angular.module('App')
 	.controller('locateController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+		
+	$scope.hello = "Food";
+	
+		
+
+	}])
+
+angular.module('App')
+	.controller('truckController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+		
+	$scope.hello = "Food";
+	
+		
+
+	}])
+
+angular.module('App')
+	.controller('accountController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 		
 	$scope.hello = "Food";
 	
