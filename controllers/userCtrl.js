@@ -1,6 +1,6 @@
 // Include  Model
 var User = require('../models/user');
-var truckusers = require('../models/finalDB')
+var truckusers = require('../models/truckusersDB')
 
 
 var createUser = function(req, res){
@@ -54,18 +54,18 @@ var findUser = function(req, res) {
 
 	console.log('REQ PARAMs', req.params)
 	if (req.params.username){
-		User.findOne({name : req.params.username}, function(err, doc){
+		User.findOne({username : req.params.username}, function(err, doc){
 			res.send(doc)
 		})
 	}
-	else{
+	// else{
 
-		User.find({truckusers : "562aab9838e821682445738d"}).populate('truckusers').exec(function(err, docs){
-			res.send(docs)
+	// 	User.find({truckusers : "562aab9838e821682445738d"}).populate('truckusers').exec(function(err, docs){
+	// 		res.send(docs)
 			
-		})
+	// 	})
 
-	}
+	// }
 }
 
 module.exports = {

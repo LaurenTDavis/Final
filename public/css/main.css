@@ -27,7 +27,11 @@
   margin: 0;
 }
 .side-border {
-  border: 46px solid #F8F8F8;
+  border-top: 45px solid #F8F8F8;
+  height: 1000px;
+  width: 200px;
+  padding-bottom: 100px;
+  background-color: #F8F8F8;
 }
 
 /*Home Page*/

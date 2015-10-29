@@ -110,7 +110,21 @@ angular.module('App')
 angular.module('App')
 	.controller('truckController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 		
-	$scope.hello = "Food";
+	$scope.title = "Track that Truck"
+
+		$http.get('/api/me')
+			.then(function(returnData){
+				$scope.trucks = returnData.data
+			})
+
+		$scope.createTruck = function(){
+
+			$http.post('/api/me', $scope.newTruck) //Req TO SERVER
+				.then(function(returnData){ //Res FROM SERVER
+					console.log('Made a Truck! ', returnData)
+				})
+
+		}
 	
 		
 
@@ -118,9 +132,43 @@ angular.module('App')
 
 angular.module('App')
 	.controller('accountController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
-		
-	$scope.hello = "Food";
 	
+    $scope.overview = true
+	$scope.viewOverview = function() {
+        $scope.edit = false;
+        $scope.location = false;
+        $scope.schedule = false;
+        $scope.preference = false;
+        $scope.overview = true;
+	}
+	$scope.viewEdit = function() {
+        $scope.edit = true;
+        $scope.location = false;
+        $scope.schedule = false;
+        $scope.preference = false;
+        $scope.overview = false;
+	}
+	$scope.viewLocation = function() {
+        $scope.edit = false;
+        $scope.location = true;
+        $scope.schedule = false;
+        $scope.preference = false;
+        $scope.overview = false;
+	}
+	$scope.viewSchedule= function() {
+        $scope.edit = false;
+        $scope.location = false;
+        $scope.schedule = true;
+        $scope.preference = false;
+        $scope.overview = false;
+	}
+	$scope.viewPreference= function() {
+        $scope.edit = false;
+        $scope.location = false;
+        $scope.schedule = false;
+        $scope.preference = true;
+        $scope.overview = false;
+	}
 		
 
 	}])
