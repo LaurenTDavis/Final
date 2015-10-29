@@ -1,4 +1,31 @@
-/*Colors*/
+/*Colors and Pics*/
+.tan {
+  background-color: #8C6954;
+}
+
+.white a {
+  color: #FFF;
+}
+.log-pic {
+  background: url(../images/parkinglot.jpg) no-repeat center;
+}
+.sign-pic {
+  background: url(../images/localtrucks.jpg) no-repeat center;
+}
+
+.pic-size {
+  background-size:cover;
+  border:none;
+  height: 90vh;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
 
 /*Home Page*/
 .logo {
@@ -143,8 +170,8 @@ section.testimonials{
 }
 .container2 {
   
-  width: 100vw;
-  height: 100vh;
+  width: 50vw;
+  height: 50vh;
 }
 
 
