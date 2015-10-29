@@ -25,7 +25,7 @@ angular.module('App')
 				templateUrl : '/html/trucks.html',
 				controller: 'truckController'
 			})
-			.when('/account', {
+			.when('/account/:username', {
 				templateUrl : 'html/account.html',
 				controller : 'accountController'
 			})
@@ -64,43 +64,44 @@ angular.module('App')
 	.controller('locateController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 		
 	$scope.hello = "Food";
+
 	// Maps! 
-var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var labelIndex = 0;
-function initialize(location) {
+	var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	var labelIndex = 0;
+	function initialize(location) {
 
-  console.log(location);
+	  console.log(location);
 
-  var mapOptions = {
+	  var mapOptions = {
 
-      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
-      zoom: 12
-    };
-       	var map = new google.maps.Map(document.getElementById("map"),
-        mapOptions);
-         // This event listener calls addMarker() when the map is clicked.
-  google.maps.event.addListener(map, 'click', function(event) {
-    addMarker(event.latLng, map);
-  });
+	      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
+	      zoom: 12
+	    };
+	       	var map = new google.maps.Map(document.getElementById("map"),
+	        mapOptions);
+	         // This event listener calls addMarker() when the map is clicked.
+	  google.maps.event.addListener(map, 'click', function(event) {
+	    addMarker(event.latLng, map);
+	  });
 
-  // Add a marker at the center of the map.
-  addMarker(mapOptions.center, map);
-}
+	  // Add a marker at the center of the map.
+	  addMarker(mapOptions.center, map);
+	}
 
-// Adds a marker to the map.
-function addMarker(location, map) {
-  // Add the marker at the clicked location, and add the next-available label
-  // from the array of alphabetical characters.
-  var marker = new google.maps.Marker({
-    position: location,
-    label: labels[labelIndex++ % labels.length],
-    map: map
-  });
-  }
+	// Adds a marker to the map.
+	function addMarker(location, map) {
+	  // Add the marker at the clicked location, and add the next-available label
+	  // from the array of alphabetical characters.
+	  var marker = new google.maps.Marker({
+	    position: location,
+	    label: labels[labelIndex++ % labels.length],
+	    map: map
+	  });
+	  }
 
-  $(document).ready(function() {
-  	navigator.geolocation.getCurrentPosition(initialize);
-  });
+	  $(document).ready(function() {
+	  	navigator.geolocation.getCurrentPosition(initialize);
+	  });
 	
 		
 

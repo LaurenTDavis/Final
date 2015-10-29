@@ -26,6 +26,9 @@
 .no-margin {
   margin: 0;
 }
+.side-border {
+  border: 46px solid #F8F8F8;
+}
 
 /*Home Page*/
 .logo {

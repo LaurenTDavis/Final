@@ -12,6 +12,8 @@ var passport = require('passport');
 
 var passportConfig = require('./config/passport'); 
 
+var userCtrl = require('./controllers/userCtrl')
+
 // Create Express App Object \\
 var app = express();
 
@@ -53,6 +55,8 @@ app.get('/auth/logout', authenticationController.logout);
 app.get('/api/me', function(req, res){
 	res.send(req.user)
 })
+app.get('/api/me/:username', userCtrl.findUser)
+
 
 // app.use(passportConfig.ensureAuthenticated);
 
