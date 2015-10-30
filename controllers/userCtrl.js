@@ -27,7 +27,7 @@ var createUser = function(req, res){
 				name : req.body.username
 			})
 			// Save to DB
-			newHQ.save(function(err, doc){
+			newTruck.save(function(err, doc){
 				// We create the hero now INSIDE of the document
 				// SAVE method callback.
 				var newUser = new User({

@@ -50,8 +50,6 @@ angular.module('App')
 angular.module('App')
 	.controller('mainController', ['$scope', '$http', 'authService', '$routeParams', function($scope, $http, authService, $routeParams){
 		console.log('AUTH', authService)
-	
-	$scope.hello = "Food";
 		
 		authService.authCheck(function(user){
 			console.log('USER!', user)
@@ -63,11 +61,9 @@ angular.module('App')
 angular.module('App')
 	.controller('locateController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 		
-	$scope.hello = "Food";
 
 	// Maps! 
-	var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	var labelIndex = 0;
+
 	function initialize(location) {
 
 	  console.log(location);
@@ -94,7 +90,6 @@ angular.module('App')
 	  // from the array of alphabetical characters.
 	  var marker = new google.maps.Marker({
 	    position: location,
-	    label: labels[labelIndex++ % labels.length],
 	    map: map
 	  });
 	  }
@@ -125,7 +120,17 @@ angular.module('App')
 				})
 
 		}
-	
+		var truckName = $routeParams.truckName
+
+		console.log('Truck name,', truckName)
+
+		$http.get('/api/trucks/' + truckName)
+			.then(function(returnData){
+				$scope.hero = returnData.data
+			})
+
+
+	// Account Set Up
 	$scope.overview = true
 	$scope.viewOverview = function() {
         $scope.edit = false;

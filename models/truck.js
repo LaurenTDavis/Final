@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var truckSchema = mongoose.Schema({
 	name			: {type : String},
-	picture 		: {}
+	picture 		: {},
+	HQ				: {type : mongoose.Schema.ObjectId, ref:'HQ'},
 
 });
 

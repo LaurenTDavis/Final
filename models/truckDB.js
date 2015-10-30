@@ -6,4 +6,4 @@ var truckDBSchema = mongoose.Schema({
 });
 
 // Being modelling the collection
-module.exports = mongoose.model('Trucks', truckDBSchema);
+module.exports = mongoose.model('HQ', truckDBSchema);
