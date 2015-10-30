@@ -1,32 +1,63 @@
-<div class="container-fluid">
+<div class="container-fluid grey">
     <div class="row">
-      <div class="side-border col-sm-3 col-md-2 sidebar no-padding">
-        <ul class="nav navbar-default nav-sidebar text-center">
+      <div class="col-sm-3 col-md-2 sidebar no-padding">
+        <ul class="side-border nav navbar-default nav-sidebar text-center white">
           <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
           <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck Page</a></li>
           <li><a ng-click="viewLocation()" ng-class="{active: location}">Locations</a></li>
           <li><a ng-click="viewSchedule()" ng-class="{active: schedule}">Schedules</a></li>
-          <li><a ng-click="viewPreference()" ng-class="{active: preference}">Preferences</a></li>
         </ul>
 
-
       </div>
-      <div class="col-sm-9 col-sm-offset-3 col-md-1 col-md-offset-1 main no-margin">
-        <h1 class="page-header">Dashboard</h1>
-          <div class="col-sm-9 col-sm-offset-3 col-md-1 col-md-offset-1 no-margin" ng-show="edit">EDIT </div>
-          <div class="col-sm-9 col-sm-offset-3 col-md-1 col-md-offset-1 no-margin" ng-show="location">Location</div>
-          <div class="col-sm-9 col-sm-offset-3 col-md-1 col-md-offset-1 no-margin" ng-show="schedule">Schedules</div>
-          <div class="col-sm-9 col-sm-offset-3 col-md-1 col-md-offset-1 no-margin" ng-show="preference">Preferences</div>
-      
-      
-
-
-      </div>
-  </div>
 
   
 
+
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-1">
+        <h1 class="page-header">Dashboard</h1>
+        <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
+        <button class="btn btn-danger btn-lg">Boost Location</button>
+          
+      </div>
+
+
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
+          <form class="form-group" ng-submit="createTruck()">
+            <label>Truck Name: 
+            <input class="form-control" ng-model="newTruck.name" placeholder="Name"></label>
+            <label>Truck Picture: 
+            <input class="form-control" ng-model="newTruck.picture" placeholder="Picture"></label>
+            <input type="submit">
+          </form>
+        </div>
+        
+
+
+
+
+          <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">Location</div>
+
+
+
+
+          <div class="col-sm-9 col-sm-offset-3 col-md-1 col-md-offset-1 no-margin" ng-show="schedule">Schedules</div>
+
+      
+
+      </div>
+  </div>  
 </div>
+
+
+
+
+
+
+
+
+
 
 
 

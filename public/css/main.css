@@ -1,10 +1,11 @@
 /*Colors and Pics*/
-.tan {
-  background-color: #8C6954;
+
+.grey {
+  /*background-color: #CBCBCB;*/
 }
 
 .white a {
-  color: #FFF;
+  color: #2B4E5D;
 }
 .log-pic {
   background: url(../images/parkinglot.jpg) no-repeat center;
@@ -28,10 +29,7 @@
 }
 .side-border {
   border-top: 45px solid #F8F8F8;
-  height: 1000px;
-  width: 200px;
-  padding-bottom: 100px;
-  background-color: #F8F8F8;
+  border-bottom: 500px solid #F8F8F8;
 }
 
 /*Home Page*/
@@ -177,8 +175,8 @@ section.testimonials{
 }
 .container2 {
   
-  width: 50vw;
-  height: 50vh;
+  width: 100vw;
+  height: 65vh;
 }
 
 
@@ -266,3 +264,20 @@ section.testimonials{
     display: block;
     margin-top: 10px;
 }
+
+
+/* Account Page*/
+.boxed-group {
+    position: relative;
+    border-radius: 3px;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+

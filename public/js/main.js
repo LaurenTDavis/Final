@@ -27,7 +27,7 @@ angular.module('App')
 			})
 			.when('/account/:username', {
 				templateUrl : 'html/account.html',
-				controller : 'accountController'
+				controller : 'truckController'
 			})
 
 	}])
@@ -126,14 +126,7 @@ angular.module('App')
 
 		}
 	
-		
-
-	}])
-
-angular.module('App')
-	.controller('accountController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
-	
-    $scope.overview = true
+	$scope.overview = true
 	$scope.viewOverview = function() {
         $scope.edit = false;
         $scope.location = false;
@@ -162,16 +155,11 @@ angular.module('App')
         $scope.preference = false;
         $scope.overview = false;
 	}
-	$scope.viewPreference= function() {
-        $scope.edit = false;
-        $scope.location = false;
-        $scope.schedule = false;
-        $scope.preference = true;
-        $scope.overview = false;
-	}
+
 		
 
 	}])
+
 
 
 
