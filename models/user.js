@@ -15,7 +15,10 @@ var userSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  truckName    : String,
+  lat          : Number,
+  lon          : Number,
 });
 
 userSchema.pre('save', function(next){
