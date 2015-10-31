@@ -30,7 +30,7 @@
                 <li role="presentation"><a href="/#/trucks">Trucks</a></li>
                 <li ng-hide="loggedIn" role="presentation"><a href="/#/auth/signup">Sign Up</a></li>
                 <li ng-hide="loggedIn" ng-click="toggleSignIn()" role="presentation"><a href="/#/auth/login">Sign In</a></li>
-                <li ng-show="loggedIn" class="hoverEffects"><a href="/#/account/:username"><span class="glyphicon glyphicon-user"></a></li>
+                <li ng-show="loggedIn" class="hoverEffects"><a href="/#/account/{{user.username}}"><span class="glyphicon glyphicon-user"></a></li>
             </ul>
         </div>
     </div>

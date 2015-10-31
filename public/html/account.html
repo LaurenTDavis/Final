@@ -1,12 +1,12 @@
 <div class="container-fluid grey">
-    <div class="row">
+    <div ng-controller="navController" class="row">
       <div class="col-sm-3 col-md-2 sidebar no-padding">
         <ul class="side-border nav navbar-default nav-sidebar text-center white">
           <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
           <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck</a></li>
           <li><a ng-click="viewLocation()" ng-class="{active: location}">Location</a></li>
           <li><a ng-click="viewSchedule()" ng-class="{active: schedule}">Schedules</a></li>
-          <li><a ng-click="viewSchedule()" ng-class="{active: schedule}">Logout</a></li>
+          <li><a ng-click="logout()" ng-class="{active: schedule}">Logout</a></li>
 
         </ul>
 
@@ -16,10 +16,10 @@
 
 
 
-      <div class="col-sm-9 col-md-8 col-md-offset-1">
+      <div ng-controller="locateController" class="col-sm-9 col-md-8 col-md-offset-1">
         <h1 class="page-header">Dashboard</h1>
         <div class="col-sm-3 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-          <button class="btn btn-primary btn-lg">Boost Location</button>
+          <button id="boost" class="btn btn-primary btn-lg">Boost Location</button>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
           <button class="btn btn-danger btn-lg">Leave Location</button>
@@ -30,7 +30,7 @@
 
 
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
+        <div ng-controller="truckController" class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
           <form class="form-group" ng-submit="createTruck()">
             <label>Truck Name: 
             <input class="form-control" ng-model="newTruck.name" placeholder="Name"></label>
@@ -44,15 +44,11 @@
 
 
 
-          <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">
-          <h2 class="current-location">Current Location:</h2>
-            <div ng-controller="locateController" class="container container1" >
+          <div ng-controller="locateController" class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">
+            <h2 class="current-location">Current Location:</h2>
+            <div class="container container1" >
               <div id="map"></div>
             </div>
-
-
-
-
           </div>
 
 

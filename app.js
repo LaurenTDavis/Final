@@ -12,7 +12,6 @@ var passport = require('passport');
 
 var passportConfig = require('./config/passport'); 
 
-var userCtrl = require('./controllers/userCtrl')
 var truckCtrl = require('./controllers/truckCtrl')
 
 // Create Express App Object \\
@@ -56,7 +55,7 @@ app.get('/auth/logout', authenticationController.logout);
 app.get('/api/me', function(req, res){
 	res.send(req.user)
 })
-app.get('/account/:username', userCtrl.createUser)
+
 
 // Truck Routes
 app.post('/api/trucks', truckCtrl.createTruck)

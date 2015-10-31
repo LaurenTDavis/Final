@@ -27,7 +27,7 @@ angular.module('App')
 			})
 			.when('/account/:username', {
 				templateUrl : 'html/account.html',
-				controller : 'truckController'
+				controller : 'accountController'
 			})
 
 	}])
@@ -67,6 +67,13 @@ angular.module('App')
                 $scope.loggedIn = true;
             }
     })
+         $scope.logout = function() {
+          	$scope.loggedIn = !$scope.loggedIn;
+          }
+
+		authService.authCheck(function(user){
+			$scope.user = user
+		})
         
         
     }])
@@ -74,14 +81,15 @@ angular.module('App')
 angular.module('App')
 	.controller('locateController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 		
-
 	var lat; 
 	var lon; 
+
+
 	// Maps! 
 
 	function initialize(location) {
 
-	  console.log(location);
+	  console.log('Location', location);
 
 	  var mapOptions = {
 
@@ -96,7 +104,7 @@ angular.module('App')
 	  });
 
 	  // Add a marker at the center of the map.
-	  addMarker(mapOptions.center, map);
+	  	addMarker(mapOptions.center, map);
 	}
 
 	// Adds a marker to the map.
@@ -111,40 +119,42 @@ angular.module('App')
 
 	  $(document).ready(function() {
 	  	navigator.geolocation.getCurrentPosition(initialize);
-	  });
-	
-		
+	  });		
 
 	}])
+
 
 angular.module('App')
 	.controller('truckController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 		
 	$scope.title = "Track that Truck"
 
-		$http.get('/api/me')
-			.then(function(returnData){
-				$scope.trucks = returnData.data
+	$http.get('/api/me')
+		.then(function(returnData){
+			$scope.trucks = returnData.data
+		})
+
+	$scope.createTruck = function(){
+
+		$http.post('/api/me', $scope.newTruck) //Req TO SERVER
+			.then(function(returnData){ //Res FROM SERVER
+				console.log('Made a Truck! ', returnData)
 			})
 
-		$scope.createTruck = function(){
+	}
+	var truckName = $routeParams.truckName
 
-			$http.post('/api/me', $scope.newTruck) //Req TO SERVER
-				.then(function(returnData){ //Res FROM SERVER
-					console.log('Made a Truck! ', returnData)
-				})
+	console.log('Truck name,', truckName)
 
-		}
-		var truckName = $routeParams.truckName
+	$http.get('/api/trucks/' + truckName)
+		.then(function(returnData){
+			$scope.hero = returnData.data
+		})
 
-		console.log('Truck name,', truckName)
+	}])
 
-		$http.get('/api/trucks/' + truckName)
-			.then(function(returnData){
-				$scope.hero = returnData.data
-			})
-
-
+angular.module('App')
+	.controller('accountController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 	// Account Set Up
 	$scope.overview = true
 	$scope.viewOverview = function() {
@@ -175,6 +185,90 @@ angular.module('App')
         $scope.preference = false;
         $scope.overview = false;
 	}
+	
+	var lat; 
+	var lon;  
+
+	var truckMarker = {};
+
+	function initialize(location) {
+
+	  console.log('Location', location);
+
+	  var mapOptions = {
+
+	      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
+	      zoom: 12
+	    };
+	       	var map = new google.maps.Map(document.getElementById("map"),
+	        mapOptions);
+	         // This event listener calls addMarker() when the map is clicked.
+	  google.maps.event.addListener(map, 'click', function(event) {
+	    addMarker(event.latLng, map);
+	  });
+
+	  // Add a marker at the center of the map.
+	  	addMarker(mapOptions.center, map);
+	}
+
+	// Adds a marker to the map.
+	function addMarker(location, map) {
+	  // Add the marker at the clicked location, and add the next-available label
+	  // from the array of alphabetical characters.
+	  var marker = new google.maps.Marker({
+	    position: location,
+	    map: map
+	  });
+	  }
+
+	  $(document).ready(function() {
+	  	navigator.geolocation.getCurrentPosition(initialize);
+	  });
+
+	function remove_marker(Marker) {
+	    if(Marker.getDraggable()) 
+	    {
+	        Marker.setMap(null); 
+	    }
+	    else
+	    {
+	        var mLatLang = Marker.getPosition().toUrlValue(); //get marker position
+	        var myData = {del : 'true', latlang : mLatLang}; //post variables
+	        $.ajax({
+	          type: "POST",
+	          url: "map_process.php",
+	          data: myData,
+	          success:function(data){
+	                Marker.setMap(null); 
+	                alert(data);
+	            },
+	            error:function (xhr, ajaxOptions, thrownError){
+	                alert(thrownError); //throw any errors
+	            }
+	        });
+	    }
+	}
+
+
+	// google.maps.event.addListener(marker, 'click', function(event) {
+	//  		// marker.setMap(null);
+	// 	truckMarker = marker;
+
+	// });
+
+
+	// document.getElementById('boost').addEventListener('click', function() {
+	// 	// marker.setMap(null);
+	// 	truckMarker.setMap(null); 			
+	// });
+				
+	// google.maps.event.addListener(marker, 'click', function(event) {
+	//  		addMarker.open(map, marker);
+	// });
+
+
+
+
 
 		
 
