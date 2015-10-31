@@ -1,50 +1,140 @@
+var app = require("../app");
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
 var User = require('../models/user');
 
-// Serializaton
-passport.serializeUser(function(user, done){
-  done(null, user.id);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.sessionMiddleware = session({
+    secret: 'pR3t3nDc0mPl3xP4ssw0rD',
+    resave: false,
+    saveUninitialized: true,
 });
 
-// Deserialization
-passport.deserializeUser(function(id, done){
-  User.findById(id, function(err, user){
-    done(err, user);
-  });
+app.use(app.sessionMiddleware);
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
 });
-
-var localStrategy = new LocalStrategy(function(username, password, done){
-
-  User.findOne({username: username}, function(err, user){
-  	if(err) return done(err);
-
-    if(!user) return done(null, false);
-
-    user.comparePassword(password, function(err, isMatch){
-
-      if(err) return done(err);
-
-      if(isMatch){
-        return done(err, user);
-      } else {
-    
-        return done(null, false);
-      }
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
     });
-  });
 });
 
-passport.use(localStrategy);
-
-module.exports = {
-  ensureAuthenticated: function(req, res, next){
-
-    if(req.isAuthenticated()){
-      return next();
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        User.findOne({
+            username: username
+        }, function(err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false, {
+                    message: 'Incorrect username.'
+                });
+            }
+            bcrypt.compare(password, user.password, function(error, response) {
+                if (response === true) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
+            });
+        });
     }
-    
-    res.redirect('/auth/login');
-  }
+));
+
+app.isAuthenticated = function(req, res, next) {
+    console.log(req.isAuthenticated(), req.session);
+    if (req.isAuthenticated()) {
+        console.log("login");
+        return next();
+    }
+    res.redirect('/');
 };
+app.isAuthenticatedAjax = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.send({
+        error: 'not logged in'
+    });
+};
+
+app.get('/', function(req, res) {
+    res.sendFile('/html/login.html', {
+        root: './public'
+    });
+});
+
+app.post('/auth/signup', function(req, res) {
+    bcrypt.genSalt(10, function(error, salt) {
+        bcrypt.hash(req.body.password, salt, function(hashError, hash) {
+            var newUser = new User({
+                username: req.body.username,
+                email: req.body.email,
+                password: hash,
+                truckName : req.body.truckName,
+                lat: req.body.lat,
+                lon: req.body.lonn,
+            });
+            newUser.save(function(saveErr, user) {
+                if (saveErr) {
+                    res.send({
+                        err: saveErr
+                    });
+                } else {
+                    req.login(user, function(loginErr) {
+                        if (loginErr) {
+                            res.send({
+                                err: loginErr
+                            });
+                        } else {
+                            res.send({
+                                success: 'success'
+                            });
+                        }
+                    });
+                }
+            });
+
+        });
+    });
+});
+
+
+
+app.post('/auth/login', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.send({error: 'Incorrect Try Again. '});
+        }
+        req.logIn(user, function(err) {
+            if (err) {
+                return next(err);
+            }
+            return  res.redirect('/');
+            // res.send({success: 'success'});
+        });
+    })(req, res, next);
+});
+
+
+app.get('/api/me', app.isAuthenticatedAjax, function(req, res) {
+   res.sendFile('/html/account.html', {root : './public'})
+});
+
+module.exports = app;
