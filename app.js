@@ -56,7 +56,7 @@ app.get('/auth/logout', authenticationController.logout);
 app.get('/api/me', function(req, res){
 	res.send(req.user)
 })
-app.get('/account/:username', userCtrl.findUser)
+app.get('/account/:username', userCtrl.createUser)
 
 // Truck Routes
 app.post('/api/trucks', truckCtrl.createTruck)

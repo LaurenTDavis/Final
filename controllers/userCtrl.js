@@ -15,7 +15,7 @@ var createUser = function(req, res){
 			})
 
 			newUser.save(function(err, doc){
-				res.send(doc)
+				res.redirect('./account/' + req.body.username)
 			})
 
 		}

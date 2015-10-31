@@ -4,7 +4,7 @@
         <ul class="side-border nav navbar-default nav-sidebar text-center white">
           <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
           <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck</a></li>
-          <li><a ng-click="viewLocation()" ng-class="{active: location}">Locations</a></li>
+          <li><a ng-click="viewLocation()" ng-class="{active: location}">Location</a></li>
           <li><a ng-click="viewSchedule()" ng-class="{active: schedule}">Schedules</a></li>
           <li><a ng-click="viewSchedule()" ng-class="{active: schedule}">Logout</a></li>
 
@@ -44,7 +44,16 @@
 
 
 
-          <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">Location</div>
+          <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">
+          <h2 class="current-location">Current Location:</h2>
+            <div ng-controller="locateController" class="container container1" >
+              <div id="map"></div>
+            </div>
+
+
+
+
+          </div>
 
 
 

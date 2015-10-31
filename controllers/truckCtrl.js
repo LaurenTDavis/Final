@@ -16,6 +16,8 @@ var createTruck = function(req, res){
 				name		: req.body.name,
 				picture 	: req.body.picture,
 				HQ			: headquarters._id,
+				lat         : Number,
+				lon         : Number,
 
 
 			});
@@ -38,6 +40,8 @@ var createTruck = function(req, res){
 					name		: req.body.name,
 					picture 	: req.body.picture,
 					HQ			: doc._id,
+					lat         : req.body.lat,
+					lon         : req.body.lon,
 					
 				});
 

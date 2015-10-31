@@ -1,4 +1,11 @@
 /*Colors and Pics*/
+.current-location {
+  font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 15.4px;
+}
 
 .grey {
   /*background-color: #CBCBCB;*/
@@ -173,8 +180,12 @@ section.testimonials{
   width: 100%;
   height: 100%;
 }
+
+.container1 {
+  width: 50vw;
+  height: 70vh;
+}
 .container2 {
-  
   width: 100vw;
   height: 65vh;
 }

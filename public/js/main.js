@@ -59,9 +59,24 @@ angular.module('App')
 	}])
 
 angular.module('App')
+    .controller("navController", ['$scope', '$http', 'authService', function($scope, $http, authService) {
+        $scope.loggedIn = false;
+        authService.authCheck(function(user){
+            console.log('USER!', user)
+            if (user) {
+                $scope.loggedIn = true;
+            }
+    })
+        
+        
+    }])
+
+angular.module('App')
 	.controller('locateController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 		
 
+	var lat; 
+	var lon; 
 	// Maps! 
 
 	function initialize(location) {
