@@ -1,64 +1,43 @@
 <div class="container-fluid grey">
-    <div ng-controller="navController" class="row">
-      <div class="col-sm-3 col-md-2 sidebar no-padding">
-        <ul class="side-border nav navbar-default nav-sidebar text-center white">
-          <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
-          <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck</a></li>
-          <li><a ng-click="viewLocation()" ng-class="{active: location}">Location</a></li>
-          <li><a ng-click="viewSchedule()" ng-class="{active: schedule}">Schedules</a></li>
-          <li><a ng-click="logout()">Logout</a></li>
+  <div ng-controller="navController" class="row">
+    <div class="col-sm-3 col-md-2 sidebar no-padding">
+      <ul class="side-border nav navbar-default nav-sidebar text-center white">
+        <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
+        <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck</a></li>
+        <li><a ng-click="viewLocation()" ng-class="{active: location}">Location</a></li>
+        <li><a ng-click="logout()">Logout</a></li>
+      </ul>
+    </div>
 
-        </ul>
-
+    <div ng-controller="locateController" class="col-sm-9 col-md-8 col-md-offset-1">
+      <h1 class="page-header">Dashboard</h1>
+      <div class="col-sm-3 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
+        <button id="boost" class="btn btn-primary btn-lg">Boost Location</button>
+      </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
+        <button class="btn btn-danger btn-lg">Leave Location</button>
+      </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
+        <button class="btn btn-success btn-lg">View Truck Page</button>
       </div>
 
-  
-
-
-
-      <div ng-controller="locateController" class="col-sm-9 col-md-8 col-md-offset-1">
-        <h1 class="page-header">Dashboard</h1>
-        <div class="col-sm-3 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-          <button id="boost" class="btn btn-primary btn-lg">Boost Location</button>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-          <button class="btn btn-danger btn-lg">Leave Location</button>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-          <button class="btn btn-success btn-lg">View Truck Page</button>
-        </div>
-
-
-
-        <div ng-controller="truckController" class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
-          <form class="form-group" ng-submit="createTruck()" action="/api/trucks" method="post">
-            <label>Truck Name: 
-            <input class="form-control" ng-model="newTruck.name" placeholder="Name"></label>
-            <label>Truck Picture: 
-            <input class="form-control" ng-model="newTruck.picture" placeholder="Picture"></label>
-            <input type="submit">
-          </form>
-        </div>
-        
-
-
-
-
-          <div ng-controller="locateController" class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">
-            <h2 class="current-location">Current Location:</h2>
-            <div class="container container1" >
-              <div id="map"></div>
-            </div>
-          </div>
-
-
-
-
-          <div class="col-sm-9 col-sm-offset-3 col-md-1 col-md-offset-1 no-margin" ng-show="schedule">Schedules</div>
-
-      
-
+      <div ng-controller="truckController" class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
+        <form class="form-group" ng-submit="createTruck()" action="/api/trucks" method="post">
+          <label>Truck Name: 
+          <input class="form-control" ng-model="newTruck.name" placeholder="Name"></label>
+          <label>Truck Picture: 
+          <input class="form-control" ng-model="newTruck.picture" placeholder="Picture"></label>
+          <input type="submit">
+        </form>
       </div>
+
+      <div ng-controller="locateController" class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">
+        <h2 class="current-location">Current Location:</h2>
+        <div class="container container1" >
+          <div id="map"></div>
+        </div>
+      </div>
+
   </div>  
 </div>
 
