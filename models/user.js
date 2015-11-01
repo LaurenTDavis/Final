@@ -16,6 +16,11 @@ var userSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  name      : {type : String},
+  picture   : {},
+  lat       : Number,
+  lon       : Number,
+
 });
 
 userSchema.pre('save', function(next){
