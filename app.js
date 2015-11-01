@@ -50,6 +50,8 @@ app.post('/auth/signup', authenticationController.processSignup);
 
 // Any requests to log out can be handled at this url
 app.get('/auth/logout', authenticationController.logout);
+app.post('/auth/logout', authenticationController.logout);
+
 
 // This route is designed to send back the logged in user (or undefined if they are NOT logged in)
 app.get('/api/me', function(req, res){

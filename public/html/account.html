@@ -5,7 +5,9 @@
         <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
         <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck</a></li>
         <li><a ng-click="viewLocation()" ng-class="{active: location}">Location</a></li>
-        <li><a ng-click="logout()">Logout</a></li>
+        <form action="/auth/logout" method="post">
+          <li><button class="strip-btn" type="submit">Logout</button></li>
+        </form>
       </ul>
     </div>
 

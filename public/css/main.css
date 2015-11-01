@@ -13,7 +13,14 @@
 
 .white a {
   color: #2B4E5D;
+  cursor: pointer;
 }
+.strip-btn {
+  border: none;
+  background-color: #F8f8f8;
+  outline: none;
+}
+
 .log-pic {
   background: url(../images/parkinglot.jpg) no-repeat center;
 }

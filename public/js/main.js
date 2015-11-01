@@ -62,14 +62,10 @@ angular.module('App')
     .controller("navController", ['$scope', '$http', 'authService', function($scope, $http, authService) {
         $scope.loggedIn = false;
         authService.authCheck(function(user){
-            console.log('USER!', user)
             if (user) {
                 $scope.loggedIn = true;
             }
     })
-         $scope.logout = function() {
-          	$scope.loggedIn = !$scope.loggedIn;
-          }
 
 		authService.authCheck(function(user){
 			$scope.user = user
