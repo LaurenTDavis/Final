@@ -87,6 +87,9 @@ angular.module('App')
 
 	  console.log('Location', location);
 
+	  var random1 = { lat : 40.02, lng : -105.24 };
+	  var random2 = { lat : 40.01, lng : -105.22}
+
 	  var mapOptions = {
 
 	      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
@@ -94,13 +97,13 @@ angular.module('App')
 	    };
 	       	var map = new google.maps.Map(document.getElementById("map"),
 	        mapOptions);
-	         // This event listener calls addMarker() when the map is clicked.
-	  google.maps.event.addListener(map, 'click', function(event) {
-	    addMarker(event.latLng, map);
-	  });
+	
 
 	  // Add a marker at the center of the map.
 	  	addMarker(mapOptions.center, map);
+	  	addMarker(random1, map);
+	  	addMarker(random2, map);
+
 	}
 
 	// Adds a marker to the map.
@@ -190,7 +193,7 @@ angular.module('App')
 	function initialize(location) {
 
 	  console.log('Location', location);
-
+	
 	  var mapOptions = {
 
 	      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
@@ -199,9 +202,11 @@ angular.module('App')
 	       	var map = new google.maps.Map(document.getElementById("map"),
 	        mapOptions);
 	         // This event listener calls addMarker() when the map is clicked.
-	  google.maps.event.addListener(map, 'click', function(event) {
-	    addMarker(event.latLng, map);
-	  });
+	         $scope.remove= function() {
+		  		google.maps.event.addListener(map, 'click', function(event) {
+		    		removeMarker(event.latLng, map);
+		  		});
+	  		}
 
 	  // Add a marker at the center of the map.
 	  	addMarker(mapOptions.center, map);
@@ -221,7 +226,7 @@ angular.module('App')
 	  	navigator.geolocation.getCurrentPosition(initialize);
 	  });
 
-	function remove_marker(Marker) {
+	function removeMarker(Marker) {
 	    if(Marker.getDraggable()) 
 	    {
 	        Marker.setMap(null); 
