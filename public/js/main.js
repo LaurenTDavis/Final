@@ -91,7 +91,6 @@ angular.module('App')
 	  var random2 = { lat : 40.01, lng : -105.22}
 
 	  var mapOptions = {
-
 	      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
 	      zoom: 13
 	    };
@@ -100,25 +99,37 @@ angular.module('App')
 	
 
 	  // Add a marker at the center of the map.
-	  	addMarker(mapOptions.center, map);
-	  	addMarker(random1, map);
-	  	addMarker(random2, map);
+	  	 addMarker(mapOptions.center, map, 'Cheezy Bizness');
+	  	 addMarker(random1, map, 'Bun Truck');
+	  	 addMarker(random2, map, 'SuperQ');
 
 	}
 
 	// Adds a marker to the map.
-	function addMarker(location, map) {
+	function addMarker(location, map, contentString) {
 	  // Add the marker at the clicked location, and add the next-available label
 	  // from the array of alphabetical characters.
+
 	  var marker = new google.maps.Marker({
 	    position: location,
 	    map: map
 	  });
-	  }
+
+	      
+	   var infowindow = new google.maps.InfoWindow({
+	    content: contentString
+	  });
+
+	 marker.addListener('click', function() {
+	    infowindow.open(map, marker);
+	  });
+
+	}
 
 	  $(document).ready(function() {
 	  	navigator.geolocation.getCurrentPosition(initialize);
 	  });		
+
 
 	}])
 
@@ -201,14 +212,7 @@ angular.module('App')
 	    };
 	       	var map = new google.maps.Map(document.getElementById("map"),
 	        mapOptions);
-	         // This event listener calls addMarker() when the map is clicked.
-	         $scope.remove= function() {
-		  		google.maps.event.addListener(map, 'click', function(event) {
-		    		removeMarker(event.latLng, map);
-		  		});
-	  		}
 
-	  // Add a marker at the center of the map.
 	  	addMarker(mapOptions.center, map);
 	}
 
@@ -226,54 +230,43 @@ angular.module('App')
 	  	navigator.geolocation.getCurrentPosition(initialize);
 	  });
 
-	function removeMarker(Marker) {
-	    if(Marker.getDraggable()) 
-	    {
-	        Marker.setMap(null); 
-	    }
-	    else
-	    {
-	        var mLatLang = Marker.getPosition().toUrlValue(); //get marker position
-	        var myData = {del : 'true', latlang : mLatLang}; //post variables
-	        $.ajax({
-	          type: "POST",
-	          url: "map_process.php",
-	          data: myData,
-	          success:function(data){
-	                Marker.setMap(null); 
-	                alert(data);
-	            },
-	            error:function (xhr, ajaxOptions, thrownError){
-	                alert(thrownError); //throw any errors
-	            }
-	        });
-	    }
-	}
+
+	
+
+ //    $scope.add = function(event) {
+ //    	console.log(event);
+ //  		google.maps.event.addListener(map, 'click', function(event) {
+ //    		addMarker(event.latLng, map);
+ //  		});
+ //  	}
+
+ //     $scope.remove = function(event) {
+ //    	console.log(event);
+ //  		google.maps.event.addListener(map, 'click', function(event) {
+ //    		removeMarker(event.latLng, map);
+ //  		});
+	// }
+
+	google.maps.event.addListener(marker, 'click', function(event) {
+	 		// marker.setMap(null);
+		truckMarker = marker;
+
+	});
 
 
-	// google.maps.event.addListener(marker, 'click', function(event) {
-	//  		// marker.setMap(null);
-	// 	truckMarker = marker;
-
-	// });
-
-
-	// document.getElementById('boost').addEventListener('click', function() {
-	// 	// marker.setMap(null);
-	// 	truckMarker.setMap(null); 			
-	// });
+	document.getElementById('boost').addEventListener('click', function() {
+		// marker.setMap(null);
+		truckMarker.setMap(null); 			
+	});
 				
-	// google.maps.event.addListener(marker, 'click', function(event) {
-	//  		addMarker.open(map, marker);
-	// });
-
-
-
+	google.maps.event.addListener(marker, 'click', function(event) {
+	 		addMarker.open(map, marker);
+	});
 
 
 		
 
-	}])
+}])
 
 
 

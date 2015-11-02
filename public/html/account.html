@@ -14,10 +14,10 @@
     <div ng-controller="locateController" class="col-sm-9 col-md-8 col-md-offset-1">
       <h1 class="page-header">Dashboard</h1>
       <div class="col-sm-3 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-        <button id="boost" class="btn btn-primary btn-lg">Boost Location</button>
+        <button ng-click="add" class="btn btn-primary btn-lg">Boost Location</button>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-        <button class="btn btn-danger btn-lg">Leave Location</button>
+        <button ng-click="remove" class="btn btn-danger btn-lg">Leave Location</button>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
         <button class="btn btn-success btn-lg">View Truck Page</button>
@@ -33,8 +33,14 @@
         </form>
       </div>
 
-      <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-1 no-margin" ng-show="location">
+      <div class="col-sm-9 col-md-8 col-md-offset-1 no-margin" ng-show="location">
         <h2 class="current-location">Current Location:</h2>
+        <div class="col-sm-3 col-sm-offset-3 col-md-4 no-margin">
+          <button ng-click="add" class="btn btn-primary btn-lg">Boost Location</button>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin">
+          <button ng-click="remove" class="btn btn-danger btn-lg">Leave Location</button>
+        </div>
         <div class="container container1" >
           <div id="map"></div>
         </div>
