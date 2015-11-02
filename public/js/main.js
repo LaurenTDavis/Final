@@ -90,7 +90,7 @@ angular.module('App')
 	  var mapOptions = {
 
 	      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
-	      zoom: 12
+	      zoom: 13
 	    };
 	       	var map = new google.maps.Map(document.getElementById("map"),
 	        mapOptions);

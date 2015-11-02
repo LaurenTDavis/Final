@@ -72,11 +72,11 @@ app.get('/', function(req, res){
 
 
 // Creating Server and Listening for Connections \\
-var port = 80
-// app.listen(port, function(){
-//   console.log('Server running on port ' + port);
+var port = 3000
+app.listen(port, function(){
+  console.log('Server running on port ' + port);
 
-// });
+});
 
 
 // catch 404 and forward to error handler
