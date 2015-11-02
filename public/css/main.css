@@ -6,6 +6,12 @@
   font-weight: 500;
   line-height: 15.4px;
 }
+.main-page {
+  font-family: Consolas, monaco, monospace;
+}
+.fantasy {
+   font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
+}
 
 .grey {
   /*background-color: #CBCBCB;*/
