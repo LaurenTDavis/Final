@@ -102,7 +102,7 @@ angular.module('App')
 	
 
 	  // Add a marker at the center of the map.
-	  	 //addMarker(mapOptions.center, map, 'Cheezy Bizness');
+	  	 addMarker(mapOptions.center, map, 'Cheezy Bizness');
 	  	 addMarker(random1, map, 'Bun Truck');
 	  	 addMarker(random2, map, 'SuperQ');
 
@@ -201,8 +201,8 @@ angular.module('App')
 	var lon;  
 
 
-
 	function initialize(location) {
+	truckMarkers = [];
 
 	  console.log('Location', location);
 	
@@ -216,12 +216,13 @@ angular.module('App')
 
 	  	// addMarker(mapOptions.center, map);
 	 	$scope.add = function() {
-    		addMarker(mapOptions.center, map);
+    		truckMarkers.push(addMarker(mapOptions.center, map));	
   		}
 
-  // 		$scope.remove = function() {
-		// 	marker.setMap(null); 			
-		// }
+
+  		$scope.remove = function() {
+			truckMarkers.push(addMarker(null));
+		}
 	}
 
 
@@ -232,9 +233,24 @@ angular.module('App')
 	  });
 	 }
 
+	  // This event listener calls addMarker() when the map is clicked.
+	  google.maps.event.addListener(map, 'click', function(event) {
+	  	addMarker(null);
+	  });
+
 	  $(document).ready(function() {
 	  	navigator.geolocation.getCurrentPosition(initialize);
-	  });		
+	  });	
+
+
+	// function toggleMarkers() {
+	//   for (i = 0; i < truckMarkers.length; i++) {
+	//     if (truckMarkers[i].getMap() != null) truckMarkers[i].setMap(null);
+	//     else truckMarkers[i].setMap(map);
+	//   }
+	// }
+
+
 
 
 }])

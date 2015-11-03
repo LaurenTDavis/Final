@@ -60,7 +60,6 @@ var createTruck = function(req, res){
 
 var findTrucks = function(req, res) {
 
-	console.log('REQ PARAMs', req.params)
 	if (req.params.truckName){
 		Truck.findOne({name : req.params.truckName}, function(err, doc){
 			res.send(doc)
