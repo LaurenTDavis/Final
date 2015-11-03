@@ -13,8 +13,8 @@ font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
    font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
 }
 
-.grey {
-  /*background-color: #CBCBCB;*/
+.locate-color {
+  background-color: #F8F8F8;
 }
 
 .white a {
@@ -299,9 +299,21 @@ section.testimonials{
 
 /*Truck Pages */
 .truck-box {
-  width: 200px;
-  height: 200px;
-  background-color: red;
-
+  width: 220px;
+  height: 220px;
 }
+
+.truck-1 {
+  background: url(../images/buntruck.jpg) no-repeat center;
+}
+
+.truck-2 {
+  background: url(../images/cheezy.jpg) no-repeat center;
+}
+
+.truck-3 {
+  background: url(../images/superq.jpg) no-repeat center;
+}
+
+
 

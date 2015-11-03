@@ -247,22 +247,23 @@ angular.module('App')
  //    		removeMarker(event.latLng, map);
  //  		});
 	// }
+	
 
-	// google.maps.event.addListener(marker, 'click', function(event) {
-	//  		// marker.setMap(null);
-	// 	truckMarker = marker;
+	google.maps.event.addListener(marker, 'click', function(event) {
+	 		// marker.setMap(null);
+		truckMarker = marker;
 
-	// });
+	});
 
 
-	// document.getElementById('boost').addEventListener('click', function() {
-	// 	// marker.setMap(null);
-	// 	truckMarker.setMap(null); 			
-	// });
+	document.getElementById('boost').addEventListener('click', function() {
+		// marker.setMap(null);
+		truckMarker.setMap(null); 			
+	});
 				
-	// google.maps.event.addListener(marker, 'click', function(event) {
-	//  		addMarker.open(map, marker);
-	// });
+	google.maps.event.addListener(marker, 'click', function(event) {
+	 		addMarker.open(map, marker);
+	});
 
 
 		

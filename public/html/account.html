@@ -1,6 +1,15 @@
 <div class="container-fluid grey">
   <div ng-controller="navController" class="row">
     <div class="col-sm-3 col-md-2 sidebar no-padding">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+            </button>
+        </div>
+          <div class="collapse navbar-collapse text-center" id="navcol-1">
       <ul class="side-border nav navbar-default nav-sidebar text-center white">
         <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
         <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck</a></li>
@@ -9,6 +18,7 @@
           <li><button class="strip-btn" type="submit">Logout</button></li>
         </form>
       </ul>
+      </div>
     </div>
 
     <div ng-controller="locateController" class="col-sm-9 col-md-8 col-md-offset-1">
