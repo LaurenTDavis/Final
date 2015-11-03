@@ -25,6 +25,10 @@ angular.module('App')
 				templateUrl : '/html/trucks.html',
 				controller: 'truckController'
 			})
+			.when('/trucks/:name', {
+				templateUrl : '/html/truckpage.html',
+				controller: 'truckController'
+			})
 			.when('/account/:username', {
 				templateUrl : 'html/account.html',
 				controller : 'accountController'
@@ -76,10 +80,9 @@ angular.module('App')
 
 angular.module('App')
 	.controller('locateController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
-		
+	
 	var lat; 
 	var lon; 
-
 
 	// Maps! 
 
@@ -139,22 +142,20 @@ angular.module('App')
 		
 	$scope.title = "Track that Truck"
 
-	$http.get('/api/me')
+	$http.get('/api/trucks')
 		.then(function(returnData){
 			$scope.trucks = returnData.data
 		})
 
 	$scope.createTruck = function(){
 
-		$http.post('/api/me', $scope.newTruck) //Req TO SERVER
+		$http.post('/api/trucks', $scope.newTruck) //Req TO SERVER
 			.then(function(returnData){ //Res FROM SERVER
 				console.log('Made a Truck! ', returnData)
 			})
 
 	}
 	var truckName = $routeParams.truckName
-
-	console.log('Truck name,', truckName)
 
 	$http.get('/api/trucks/' + truckName)
 		.then(function(returnData){

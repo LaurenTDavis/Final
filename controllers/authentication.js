@@ -32,7 +32,9 @@ var authenticationController = {
     var user = new User({
       username: req.body.username,
       password: req.body.password,
-      email: req.body.email
+      email: req.body.email,
+      name      : req.body.name,
+      picture   : req.body.picture
     });
 
     user.save(function(err, user){
