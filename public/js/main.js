@@ -102,7 +102,7 @@ angular.module('App')
 	
 
 	  // Add a marker at the center of the map.
-	  	 addMarker(mapOptions.center, map, 'Cheezy Bizness');
+	  	 //addMarker(mapOptions.center, map, 'Cheezy Bizness');
 	  	 addMarker(random1, map, 'Bun Truck');
 	  	 addMarker(random2, map, 'SuperQ');
 
@@ -200,7 +200,7 @@ angular.module('App')
 	var lat; 
 	var lon;  
 
-	var truckMarker = {};
+
 
 	function initialize(location) {
 
@@ -214,59 +214,28 @@ angular.module('App')
 	       	var map = new google.maps.Map(document.getElementById("map"),
 	        mapOptions);
 
-	  	addMarker(mapOptions.center, map);
+	  	// addMarker(mapOptions.center, map);
+	 	$scope.add = function() {
+    		addMarker(mapOptions.center, map);
+  		}
+
+  // 		$scope.remove = function() {
+		// 	marker.setMap(null); 			
+		// }
 	}
 
-	// Adds a marker to the map.
+
 	function addMarker(location, map) {
-	  // Add the marker at the clicked location, and add the next-available label
-	  // from the array of alphabetical characters.
 	  var marker = new google.maps.Marker({
 	    position: location,
 	    map: map
 	  });
-	  }
+	 }
 
 	  $(document).ready(function() {
 	  	navigator.geolocation.getCurrentPosition(initialize);
-	  });
+	  });		
 
-
-	
-
- //    $scope.add = function(event) {
- //    	console.log(event);
- //  		google.maps.event.addListener(map, 'click', function(event) {
- //    		addMarker(event.latLng, map);
- //  		});
- //  	}
-
- //     $scope.remove = function(event) {
- //    	console.log(event);
- //  		google.maps.event.addListener(map, 'click', function(event) {
- //    		removeMarker(event.latLng, map);
- //  		});
-	// }
-	
-
-	google.maps.event.addListener(marker, 'click', function(event) {
-	 		// marker.setMap(null);
-		truckMarker = marker;
-
-	});
-
-
-	document.getElementById('boost').addEventListener('click', function() {
-		// marker.setMap(null);
-		truckMarker.setMap(null); 			
-	});
-				
-	google.maps.event.addListener(marker, 'click', function(event) {
-	 		addMarker.open(map, marker);
-	});
-
-
-		
 
 }])
 
