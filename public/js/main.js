@@ -86,6 +86,7 @@ angular.module('App')
 
 	// Maps! 
 
+
 	function initialize(location) {
 
 	  console.log('Location', location);
@@ -162,6 +163,29 @@ angular.module('App')
 			$scope.hero = returnData.data
 		})
 
+	$scope.editThis = false;
+    $scope.letsEditThis = function() {
+        $scope.editThis = !$scope.editThis
+    }
+        
+     $scope.editUserAboutYou = function() {
+         $http.post('/api/users/edituseraboutyou', $scope.currentUser)
+            .then(function(returnData){
+                console.log(returnData.data)
+                
+         })
+         $scope.editThis = false;
+     }
+     
+     $scope.editUserBasicInfo = function() {
+         $http.post('/api/users/edituserbasicinfo', $scope.currentUser)
+            .then(function(returnData){
+                console.log(returnData.data)
+         })
+         $scope.editThis = false;
+     }
+
+
 	}])
 
 angular.module('App')
@@ -200,9 +224,10 @@ angular.module('App')
 	var lat; 
 	var lon;  
 
+	truckMarkers = [];
+
 
 	function initialize(location) {
-	truckMarkers = [];
 
 	  console.log('Location', location);
 	
@@ -216,12 +241,12 @@ angular.module('App')
 
 	  	// addMarker(mapOptions.center, map);
 	 	$scope.add = function() {
-    		truckMarkers.push(addMarker(mapOptions.center, map));	
+    		addMarker(mapOptions.center, map);	
   		}
 
 
   		$scope.remove = function() {
-			truckMarkers.push(addMarker(null));
+			deleteMarkers()
 		}
 	}
 
@@ -231,12 +256,28 @@ angular.module('App')
 	    position: location,
 	    map: map
 	  });
+	  truckMarkers.push(marker);
 	 }
 
-	  // This event listener calls addMarker() when the map is clicked.
-	  google.maps.event.addListener(map, 'click', function(event) {
-	  	addMarker(null);
-	  });
+	function setMapOnAll(map) {
+	  for (var i = 0; i < truckMarkers.length; i++) {
+	    truckMarkers[i].setMap(map);
+	  }
+	}
+
+	function clearMarkers() {
+		setMapOnAll(null);
+	}
+
+	function showMarkers() {
+	  setMapOnAll(map);
+	}
+
+	function deleteMarkers() {
+	  clearMarkers();
+	  markers = [];
+	}
+
 
 	  $(document).ready(function() {
 	  	navigator.geolocation.getCurrentPosition(initialize);

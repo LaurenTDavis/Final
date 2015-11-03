@@ -34,8 +34,58 @@
       </div>
 
       <div ng-controller="truckController" class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
+
+        <div class="accountInfo text-left">
+          <div class="row">
+            <div class="col-md-12 text-right">
+              <button class="btn" ng-click="letsEditThis()">Edit</button>
+            </div>
+          </div>
+            <form class="form-group" ng-submit="editUserBasicInfo()">
+            <div class="row setBottomBorderBasicInfo">
+              <div class="col-md-4 basicInfo">
+                <span>Username</span>
+              </div>
+              <div class="col-md-7 col-md-offset-1 basicInfo" ng-hide="editThis">
+                <span class="blackText">{{user.username}}</span>
+              </div>
+              <textarea class="fullWidth" type="text" ng-model="user.username" ng-show="editThis">
+                                    </textarea>
+            </div>
+            <div class="row setBottomBorderBasicInfo">
+              <div class="col-md-4 basicInfo">
+                <span>Truck </span>
+              </div>
+              <div class="col-md-7 col-md-offset-1 basicInfo" ng-hide="editThis">
+                <span class="blackText">{{user.name}}</span>
+              </div>
+              <textarea class="fullWidth" type="text" ng-model="user.name" ng-show="editThis"></textarea>
+            </div>
+            <div class="row setBottomBorderBasicInfo">
+              <div class="col-md-4 basicInfo">
+                <span>Email</span>
+              </div>
+              <div class="col-md-7 col-md-offset-1 basicInfo" ng-hide="editThis">
+                <span class="blackText">{{user.email}}</span>
+              </div>
+              <textarea class="fullWidth" type="text" ng-model="user.email" ng-show="editThis"></textarea>
+            </div>
+            <button type="submit" ng-show="editThis">Save</button>
+          </form>
+        </div>
+        <div class="accountInfo text-left" ng-show="accountInfoToggle2">
+          <div class="row">
+            <div class="col-md-12 text-right">
+              <button class="btn" ng-click="letsEditThis()">Edit</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
         <form class="form-group" ng-submit="createTruck()" action="/api/trucks" method="post">
-          <label>Truck Name: {{user.username}}
+          <label>Truck Name: {{user.name}}
           <input class="form-control" ng-model="newTruck.name" placeholder="Name"></label>
           <label>Truck Picture: 
           <input class="form-control" ng-model="newTruck.picture" placeholder="Picture"></label>
