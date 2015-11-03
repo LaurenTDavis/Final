@@ -20,6 +20,7 @@ font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
 .white a {
   color: #2B4E5D;
   cursor: pointer;
+  text-decoration: none;
 }
 .strip-btn {
   border: none;
