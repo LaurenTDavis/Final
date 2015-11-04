@@ -7,7 +7,7 @@
   line-height: 15.4px;
 }
 .main-page {
-font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
+  font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
 }
 .fantasy {
    font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
@@ -293,10 +293,20 @@ section.testimonials{
 
 /* Account Page*/
 .boxed-group {
-    position: relative;
-    border-radius: 3px;
-    margin-bottom: 30px;
+  position: relative;
+  border-radius: 3px;
+  margin-bottom: 30px;
 }
+.user-info {
+  font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
+  font-size: 24px;
+}
+
+
+
+
+
+
 
 /*Truck Pages */
 .truck-box {
@@ -315,6 +325,8 @@ section.testimonials{
 .truck-3 {
   background: url(../images/superq.jpg) no-repeat center;
 }
+
+
 
 
 

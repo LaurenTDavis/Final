@@ -85,7 +85,7 @@ angular.module('App')
 	var lon; 
 
 	// Maps! 
-
+	var truckMarkers = []; 
 
 	function initialize(location) {
 
@@ -118,6 +118,7 @@ angular.module('App')
 	    position: location,
 	    map: map
 	  });
+	  truckMarkers.push(marker)
 
 	      
 	   var infowindow = new google.maps.InfoWindow({
@@ -221,6 +222,34 @@ angular.module('App')
         $scope.overview = false;
 	}
 	
+	 $('img#logo').click(function(){                           
+    $('#logoupload').trigger('click');
+    $('#logoupload').change(function(e){
+
+      var reader = new FileReader(),
+           files = e.dataTransfer ? e.dataTransfer.files : e.target.files,
+            i = 0;
+
+            reader.onload = onFileLoad;
+
+             while (files[i]) reader.readAsDataURL(files[i++]);
+
+              });
+
+                function onFileLoad(e) {
+                        var data = e.target.result;
+                          $('img#logo').attr("src",data);
+                          //Upload the image to the database
+                           //Save data on keydown
+                            $.post('test.php',{data:$('img#logo').attr("src")},function(){
+
+                            });
+                            }
+
+                        });
+
+
+	
 	var lat; 
 	var lon;  
 
@@ -282,16 +311,6 @@ angular.module('App')
 	  $(document).ready(function() {
 	  	navigator.geolocation.getCurrentPosition(initialize);
 	  });	
-
-
-	// function toggleMarkers() {
-	//   for (i = 0; i < truckMarkers.length; i++) {
-	//     if (truckMarkers[i].getMap() != null) truckMarkers[i].setMap(null);
-	//     else truckMarkers[i].setMap(map);
-	//   }
-	// }
-
-
 
 
 }])

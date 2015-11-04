@@ -1,15 +1,6 @@
 <div class="container-fluid grey">
   <div ng-controller="navController" class="row">
-    <div class="col-sm-3 col-md-2 sidebar no-padding">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span> 
-            </button>
-        </div>
-          <div class="collapse navbar-collapse text-center" id="navcol-1">
+    <div class="col-sm-3 col-md-2 sidebar no-padding container-fluid">
       <ul class="side-border nav navbar-default nav-sidebar text-center white">
         <li><a ng-click="viewOverview()" ng-class="{active: overview}">Overview <span class="sr-only">(current)</span></a></li>
         <li><a ng-click="viewEdit()" ng-class="{active: edit}">Edit Truck</a></li>
@@ -18,7 +9,6 @@
           <li><button class="strip-btn" type="submit">Logout</button></li>
         </form>
       </ul>
-      </div>
     </div>
 
     <div class="col-sm-9 col-md-8 col-md-offset-1">
@@ -34,22 +24,22 @@
       </div>
 
       <div ng-controller="truckController" class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
-
-        <div class="accountInfo text-left">
+        <div>
           <div class="row">
             <div class="col-md-12 text-right">
-              <button class="btn" ng-click="letsEditThis()">Edit</button>
+              <button class="btn btn-default" ng-click="letsEditThis()">Edit</button>
             </div>
           </div>
+          
             <form class="form-group" ng-submit="editUserBasicInfo()">
-            <div class="row setBottomBorderBasicInfo">
+            <div class="row">
               <div class="col-md-4 basicInfo">
                 <span>Username</span>
               </div>
               <div class="col-md-7 col-md-offset-1 basicInfo" ng-hide="editThis">
                 <span class="blackText">{{user.username}}</span>
               </div>
-              <textarea class="fullWidth" type="text" ng-model="user.username" ng-show="editThis">
+              <textarea class="form-control" type="text" ng-model="user.username" ng-show="editThis">
                                     </textarea>
             </div>
             <div class="row setBottomBorderBasicInfo">
@@ -59,7 +49,7 @@
               <div class="col-md-7 col-md-offset-1 basicInfo" ng-hide="editThis">
                 <span class="blackText">{{user.name}}</span>
               </div>
-              <textarea class="fullWidth" type="text" ng-model="user.name" ng-show="editThis"></textarea>
+              <textarea class="form-control" type="text" ng-model="user.name" ng-show="editThis"></textarea>
             </div>
             <div class="row setBottomBorderBasicInfo">
               <div class="col-md-4 basicInfo">
@@ -68,9 +58,21 @@
               <div class="col-md-7 col-md-offset-1 basicInfo" ng-hide="editThis">
                 <span class="blackText">{{user.email}}</span>
               </div>
-              <textarea class="fullWidth" type="text" ng-model="user.email" ng-show="editThis"></textarea>
+              <textarea class="form-control" type="text" ng-model="user.email" ng-show="editThis"></textarea>
             </div>
-            <button type="submit" ng-show="editThis">Save</button>
+            <div class="row setBottomBorderBasicInfo">
+              <div class="col-md-4 basicInfo">
+                <span>Picture</span>
+              </div>
+              <div class="col-md-7 col-md-offset-1 basicInfo" ng-hide="editThis">
+                <span class="blackText">{{user.picture}}</span>
+              </div>
+              <div>
+                <img id="logo" class="img-polaroid" alt="Logo" src="' . $row['logo'] . '" title="Click to change the logo" width="128">
+                <input ng-model="user.picture" style="visibility:hidden;" id="logoupload" type="file" accept="image/* ">
+              </div>
+            </div>
+            <button class="btn btn-default"type="submit" ng-show="editThis">Save</button>
           </form>
         </div>
         <div class="accountInfo text-left" ng-show="accountInfoToggle2">
@@ -81,16 +83,6 @@
           </div>
         </div>
 
-
-
-
-        <form class="form-group" ng-submit="createTruck()" action="/api/trucks" method="post">
-          <label>Truck Name: {{user.name}}
-          <input class="form-control" ng-model="newTruck.name" placeholder="Name"></label>
-          <label>Truck Picture: 
-          <input class="form-control" ng-model="newTruck.picture" placeholder="Picture"></label>
-          <input type="submit">
-        </form>
       </div>
 
       <div class="col-sm-9 col-md-8 col-md-offset-1 no-margin" ng-show="location">
