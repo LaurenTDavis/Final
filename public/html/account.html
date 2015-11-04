@@ -14,13 +14,13 @@
     <div class="col-sm-9 col-md-8 col-md-offset-1">
       <h1 class="page-header">Dashboard</h1>
       <div class="col-sm-3 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-        <button ng-click="add()" class="btn btn-primary btn-lg">Boost Location</button>
+        <button ng-click="add()" class="btn btn-primary big-btn">Boost Location</button>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-        <button ng-click="remove()" class="btn btn-danger btn-lg">Leave Location</button>
+        <button ng-click="remove()" class="btn btn-danger big-btn">Leave Location</button>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="overview">
-        <button class="btn btn-success btn-lg">View Truck Page</button>
+        <button class="btn btn-success big-btn">View Truck Page</button>
       </div>
 
       <div ng-controller="truckController" class="col-sm-9 col-sm-offset-3 col-md-4 no-margin" ng-show="edit">
@@ -30,7 +30,7 @@
               <button class="btn btn-default" ng-click="letsEditThis()">Edit</button>
             </div>
           </div>
-          
+
             <form class="form-group" ng-submit="editUserBasicInfo()">
             <div class="row">
               <div class="col-md-4 basicInfo">
